@@ -1,4 +1,6 @@
 #include "Arguments/Arguments.hpp"
+#include <cstdlib>
+#include <iostream>
 #include <string>
 
 ARGS_VECTOR Arguments::GetArgsVector(int argc, char *argv[]) {
@@ -42,5 +44,10 @@ std::string Arguments::GetRunPath(ARGS_VECTOR args) {
 }
 
 std::string Arguments::GetArg(ARGS_VECTOR args, int index) {
+  if (args.size() <= index) {
+    std::cerr << "Not Enough Arguments" << '\n';
+    exit(1);
+  }
+
   return args[index];
 }
